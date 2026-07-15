@@ -1,26 +1,638 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+
+  --color-paper: #fdfbf7;
+  --color-paper-dark: #f5f0e8;
+  --color-gold: #c5a044;
+  --color-gold-light: #d4b966;
+  --color-gold-dark: #a68832;
+  --color-charcoal: #2a2a2a;
+  --color-charcoal-light: #444444;
+  --color-muted: #777777;
+  --color-cover: #311e01;
+  --color-cover-inner: #211300;
+  --color-spine: #130a00;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #3d2e1e;
+  --foreground: #2a2a2a;
+}
+
+/* ======================== BASE ======================== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ======================== DESK ======================== */
+.desk-scene {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/desk-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  perspective: 2200px;
+}
+
+.desk-scene::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 40%,
+    rgba(255,220,160,0.08) 0%,
+    rgba(0,0,0,0.35) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ======================== 3D BOOK ======================== */
+.book-container {
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
+}
+
+.book-wrapper {
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* ======================== COVER ======================== */
+.book-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #462e08 0%, #311e01 50%, #1c1100 100%);
+  border-radius: 4px 12px 12px 4px;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.3),
+    inset 0 0 60px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.book-cover::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid rgba(197, 160, 68, 0.25);
+  border-radius: 2px 8px 8px 2px;
+  pointer-events: none;
+}
+
+.book-cover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, transparent 100%);
+  border-radius: 4px 0 0 4px;
+  pointer-events: none;
+}
+
+.cover-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #462e08 0%, #311e01 50%, #1c1100 100%);
+  border-radius: 4px 12px 12px 4px;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+}
+
+/* ======================== PAGES ======================== */
+.pages-block {
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  right: 4px;
+  bottom: 4px;
+  background: linear-gradient(90deg, #e8e0d0 0%, #fdfbf7 4px, #faf5ec 5px, #fdfbf7 100%);
+  border-radius: 1px 6px 6px 1px;
+  box-shadow:
+    inset 2px 0 4px rgba(0,0,0,0.12),
+    0 1px 3px rgba(0,0,0,0.15);
+}
+
+.pages-block::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 1px,
+    rgba(0,0,0,0.02) 1px,
+    rgba(0,0,0,0.02) 2px
+  );
+  border-radius: 0 4px 4px 0;
+  pointer-events: none;
+}
+
+/* ======================== OPEN BOOK ======================== */
+.open-book {
+  display: flex;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 2000px;
+}
+
+.page {
+  background: var(--color-paper);
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(197,160,68,0.3) transparent;
+}
+
+.page::-webkit-scrollbar {
+  width: 5px;
+}
+
+.page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.page::-webkit-scrollbar-thumb {
+  background: rgba(197,160,68,0.3);
+  border-radius: 2px;
+}
+
+.page-left {
+  border-radius: 8px 0 0 8px;
+  box-shadow:
+    inset -8px 0 16px rgba(0,0,0,0.06),
+    inset -1px 0 0 rgba(0,0,0,0.04),
+    -4px 0 8px rgba(0,0,0,0.08);
+}
+
+.page-left::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 100%;
+  background: linear-gradient(to left, rgba(0,0,0,0.04), transparent);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.page-right {
+  border-radius: 0 8px 8px 0;
+  box-shadow:
+    inset 8px 0 16px rgba(0,0,0,0.06),
+    inset 1px 0 0 rgba(0,0,0,0.04),
+    4px 0 8px rgba(0,0,0,0.08);
+}
+
+.page-right::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.04), transparent);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Spine shadow between pages */
+.spine-shadow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0,0,0,0.08) 20%,
+    rgba(0,0,0,0.14) 45%,
+    rgba(0,0,0,0.14) 55%,
+    rgba(0,0,0,0.08) 80%,
+    transparent 100%
+  );
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* ======================== 3D FLIPPING SHEET ======================== */
+.flipping-sheet {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transform-style: preserve-3d;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Desktop: sheet is 50% width */
+.flipping-sheet-right {
+  width: 50%;
+  left: 50%;
+  transform-origin: left center;
+}
+
+.flipping-sheet-left {
+  width: 50%;
+  left: 0;
+  transform-origin: right center;
+}
+
+/* Mobile: sheet is 100% width, flips from right edge */
+.flipping-sheet-mobile {
+  width: 100%;
+  left: 0;
+  transform-origin: left center;
+}
+
+.flipping-sheet-mobile-prev {
+  width: 100%;
+  left: 0;
+  transform-origin: right center;
+}
+
+.sheet-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: var(--color-paper);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sheet-face-front {
+  z-index: 2;
+}
+
+.sheet-face-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+/* Page curl simulation - shadow that travels with the turning page */
+.page-curl-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.page-curl-shadow-right {
+  left: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.18), rgba(0,0,0,0.06) 40%, transparent);
+}
+
+.page-curl-shadow-left {
+  right: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0.18), rgba(0,0,0,0.06) 40%, transparent);
+}
+
+.page-curl-shadow-left {
+  right: 0;
+}
+
+/* ======================== TYPOGRAPHY ======================== */
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ======================== CHAPTER STYLES ======================== */
+.chapter-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+}
+
+.chapter-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--color-charcoal);
+  line-height: 1.15;
+}
+
+.chapter-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold), transparent);
+  margin: 1rem 0 1.5rem;
+}
+
+/* ======================== PAGE NAVIGATION CORNERS ======================== */
+.page-corner {
+  position: absolute;
+  bottom: 0;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.page-corner:hover {
+  opacity: 1;
+}
+
+.page-corner-right {
+  right: 0;
+  background: linear-gradient(
+    315deg,
+    rgba(197, 160, 68, 0.15) 0%,
+    transparent 60%
+  );
+  border-radius: 0 0 8px 0;
+}
+
+.page-corner-left {
+  left: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(197, 160, 68, 0.15) 0%,
+    transparent 60%
+  );
+  border-radius: 0 0 0 8px;
+}
+
+/* ======================== PROJECT CARDS ======================== */
+.project-card {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+/* ======================== TECH BADGE ======================== */
+.tech-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  background: rgba(197, 160, 68, 0.08);
+  color: var(--color-gold-dark);
+  border: 1px solid rgba(197, 160, 68, 0.15);
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ======================== CONTACT FORM ======================== */
+.form-input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  background: rgba(0,0,0,0.02);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: var(--color-charcoal);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(197, 160, 68, 0.1);
+}
+
+.form-input::placeholder {
+  color: #aaa;
+}
+
+/* ======================== BOOKMARK ======================== */
+.bookmark-ribbon {
+  position: absolute;
+  top: -4px;
+  right: 24px;
+  width: 28px;
+  height: 52px;
+  background: linear-gradient(180deg, #c5422d 0%, #a83525 100%);
+  z-index: 30;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  transition: height 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.bookmark-ribbon:hover {
+  height: 60px;
+  transform: translateY(-2px);
+}
+
+/* ======================== BUTTON ======================== */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.2rem;
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(197, 160, 68, 0.25);
+}
+
+.btn-gold:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(197, 160, 68, 0.35);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: var(--color-charcoal);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold-dark);
+  transform: translateY(-1px);
+}
+
+/* Unified link button: outline at rest, fills gold on hover */
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.1rem;
+  background: transparent;
+  color: var(--color-charcoal);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  border: 1.5px solid rgba(0,0,0,0.14);
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  /* Smooth ease-in-out on all properties */
+  transition:
+    background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-link:hover {
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(197, 160, 68, 0.35);
+  transform: translateY(-2px);
+}
+
+/* ======================== TIMELINE ======================== */
+.timeline-line {
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-gold-light), rgba(197,160,68,0.15));
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  border: 3px solid var(--color-paper);
+  box-shadow: 0 0 0 2px var(--color-gold);
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+/* ======================== CERTIFICATE CARD ======================== */
+.cert-card {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 6px;
+  padding: 0.75rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.cert-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+/* ======================== RESPONSIVE ======================== */
+@media (max-width: 1024px) {
+  .desk-scene {
+    perspective: 1600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .desk-scene {
+    perspective: 1200px;
+  }
+
+  .spine-shadow {
+    display: none;
+  }
+}
+
+/* ======================== REDUCED MOTION ======================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ======================== MATERIAL SYMBOLS ======================== */
+.material-symbols-rounded {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 300,
+    'GRAD' 0,
+    'opsz' 24;
+  vertical-align: middle;
 }

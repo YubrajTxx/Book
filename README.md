@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📖 Yubraj Tamang — Interactive Portfolio Book
 
-## Getting Started
+An interactive hardcover book portfolio built with **Next.js**, **Framer Motion**, and **Tailwind CSS v4**.  
+Every section is a chapter. Navigate by flipping pages with realistic 3D animations.
 
-First, run the development server:
+![Portfolio Preview](public/desk-bg.png)
+
+---
+
+## ✨ Features
+
+- 🎨 **Realistic 3D page flip animation** — powered by Framer Motion CSS transforms  
+- 📱 **Fully responsive** — mobile-first design with touch/swipe support  
+- 🌙 **Premium design** — warm leather hardcover, paper-cream pages, gold typography  
+- ⌨️ **Keyboard navigation** — Arrow keys, Page Up/Down, Escape  
+- 🔖 **Chapter bookmark nav** — click the ribbon to jump to any chapter  
+- ✕ **Close button** — close the book from any page at any time  
+- 🖱️ **Mouse scroll** — scroll within pages naturally using the mouse wheel  
+- 🎯 **9 Chapters** — Welcome, Landing, About, Experience, Projects, Education, Skills, Contact, Back Cover
+
+---
+
+## 🏗️ Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Framework | Next.js 16 (App Router) |
+| Animations | Framer Motion 12 |
+| Styling | Tailwind CSS v4 + Vanilla CSS |
+| Fonts | Playfair Display, Inter (Google Fonts) |
+| Icons | Material Symbols Rounded |
+| Language | TypeScript |
+| Deploy | GitHub Pages (static export) |
+
+---
+
+## 🚀 Local Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Start dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 Deploying to Cloudflare Pages
 
-## Learn More
+This project is already prepared for static hosting. Cloudflare Pages is a great fit because the app is exported as a static site.
 
-To learn more about Next.js, take a look at the following resources:
+### Step 1 — Push to GitHub
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+git init
+git add .
+git commit -m "feat: initial portfolio book"
+git remote add origin https://github.com/<your-username>/<your-repo-name>.git
+git branch -M main
+git push -u origin main
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Step 2 — Connect to Cloudflare Pages
 
-## Deploy on Vercel
+1. In Cloudflare Dashboard, open **Workers & Pages**
+2. Click **Create** → **Pages** → **Connect to Git**
+3. Select your GitHub repository
+4. Use these build settings:
+   - Framework preset: `None`
+   - Build command: `npm run build`
+   - Output directory: `out`
+5. Click **Save and Deploy**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Step 3 — Optional environment variable
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If you are deploying under a subpath such as `/portfolio-book`, set:
+
+```bash
+NEXT_PUBLIC_BASE_PATH=/portfolio-book
+```
+
+For a root domain deployment, leave it empty.
+
+### Step 4 — Your site is live
+
+Once Cloudflare finishes the build, your site will be available at your assigned Pages domain.
+
+---
+
+## 🌐 Optional: GitHub Pages
+
+If you prefer GitHub Pages instead of Cloudflare Pages, the project is still compatible with it. You only need to set `NEXT_PUBLIC_BASE_PATH=/<repo-name>` during the build.
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── layout.tsx        # Root layout, fonts, meta SEO
+│   ├── page.tsx          # Entry point — renders <Book />
+│   └── globals.css       # Design tokens, all component styles
+├── components/
+│   ├── Book.tsx          # Core book engine — state, 3D flip, navigation
+│   └── ChapterContent.tsx # All page/chapter components
+└── data/
+    └── portfolio.ts      # All content — edit this to personalise
+
+public/
+└── desk-bg.png           # Wooden desk background texture
+```
+
+---
+
+## ✏️ Personalising the Content
+
+All text content lives in one file:
+
+```
+src/data/portfolio.ts
+```
+
+Edit `experiences`, `projects`, `education`, `skillCategories`, and `aboutText` to make it your own.  
+Update links in `ChapterContent.tsx` → `LandingPage` (Resume, GitHub, LinkedIn, Email).
+
+---
+
+## 📄 License
+
+MIT — free to use, fork, and customise.

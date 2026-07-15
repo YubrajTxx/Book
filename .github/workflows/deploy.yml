@@ -1,0 +1,43 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main          # deploy on every push to main
+  workflow_dispatch:  # also allow manual trigger from GitHub UI
+
+# Allow the workflow to write to the repo (needed for gh-pages branch)
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        # NEXT_PUBLIC_BASE_PATH must match your GitHub repo name exactly.
+        # e.g. if your repo is  https://github.com/yubrajtamang/portfolio-book
+        # then set it to       /portfolio-book
+        env:
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+        run: npm run build
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out       # Next.js static export output folder
+          publish_branch: gh-pages # GitHub Pages reads from this branch
