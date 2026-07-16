@@ -104,10 +104,10 @@ export const projects: Project[] = [
 
 export const education: Education[] = [
   {
-    university: "Tribhuvan University",
-    degree: "Bachelor of Science in Computer Science & Information Technology (BSc. CSIT)",
-    cgpa: "3.6 / 4.0",
-    years: "2020 — 2024",
+    university: "Affiliated With Lincoln University College, Malaysia",
+    degree: "Bachelor of Information Technology (BIT)",
+    // cgpa: "3.6 / 4.0",
+    years: "2022 — 2027",
   },
 ];
 
@@ -141,7 +141,7 @@ export const certificates: Certificate[] = [
 export const skillCategories: SkillCategory[] = [
   {
     category: "Analytics",
-    skills: ["SQL", "Python", "Excel", "Power BI", "Tableau", "Data Cleaning"],
+    skills: ["SQL", "Python", "Excel", "Power BI", "Data Cleaning"],
   },
   {
     category: "Visualization",
@@ -169,6 +169,6 @@ export const aboutText = `I'm a passionate Data Analyst based in Nepal, with a s
 
 Over time, I've developed skills in SQL, Excel, Python, dashboarding, and data storytelling. I enjoy working with structured data to uncover opportunities, improve reporting, and help stakeholders understand what the numbers actually mean.
 
-When I'm not analyzing data, you'll find me exploring new tools, learning about business intelligence, or keeping up with trends in data-driven decision-making. I'm motivated by the idea that good analysis can make complex problems easier to understand and easier to act on.
+When I'm not analyzing data, you'll find me exploring new tools, learning about business intelligence, or keeping up with trends in data driven decision making. I'm motivated by the idea that good analysis can make complex problems easier to understand and easier to act on.
 
-My goal is to create meaningful insights — reports that are accurate, visual, and practical enough to drive confident action.`;
+My goal is to create meaningful insights reports that are accurate, visual, and practical enough to drive confident action.`;
