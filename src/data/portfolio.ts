@@ -35,61 +35,61 @@ export interface SkillCategory {
 
 export const experiences: Experience[] = [
   {
-    company: "Tech Innovations Pvt. Ltd.",
-    role: "Data Analyst",
-    date: "Jan 2024 — Present",
+    company: "Bhojdeals Food Delivery Company",
+    role: "Network Handler & IT Support",
+    date: "April 2025 — April 2026",
     description: [
-      "Built interactive dashboards and KPI reports to help teams monitor business performance and trends.",
-      "Analyzed operational and customer data to uncover actionable insights and support decision-making.",
-      "Partnered with cross-functional teams to translate business questions into data-driven reporting solutions.",
+      "Provided technical support for hardware, software, and network infrastructure, ensuring high system availability and minimizing operational downtime.",
+      "Monitored, diagnosed, and resolved network connectivity issues while maintaining reliable performance across office systems and services.",
+      "Collaborated with cross functional teams to troubleshoot IT related challenges, improve operational efficiency, and deliver timely technical solutions.",
     ],
   },
-  {
-    company: "DataFlow Solutions",
-    role: "Business Intelligence Intern",
-    date: "Jun 2023 — Dec 2023",
-    description: [
-      "Created SQL-based reports and visualizations for data quality, revenue, and usage monitoring.",
-      "Improved dashboard performance and simplified reporting workflows for stakeholders.",
-      "Supported ETL validation and data cleaning processes for more reliable analytics outputs.",
-    ],
-  },
+  // {
+  //   company: "Data Analytics Nepal",
+  //   role: "Business Intelligence Intern",
+  //   date: "Jun 2023 — Dec 2023",
+  //   description: [
+  //     "Created SQL-based reports and visualizations for data quality, revenue, and usage monitoring.",
+  //     "Improved dashboard performance and simplified reporting workflows for stakeholders.",
+  //     "Supported ETL validation and data cleaning processes for more reliable analytics outputs.",
+  //   ],
+  // },
   {
     company: "Freelance",
-    role: "Data Analyst Consultant",
+    role: "Graphic Designer",
     date: "2022 — 2023",
     description: [
-      "Delivered analytics support for clients across marketing, sales, and operations use cases.",
-      "Built dashboards and summary reports using Excel, Power BI, and SQL to track performance.",
-      "Translated raw business data into clear insights for non-technical decision-makers.",
+      "Provided creative graphic design services for businesses and individuals, focusing on digital marketing and brand promotion.",
+      "Designed social media posts, business cards, flyers, banners, and promotional materials.",
+      "Worked closely with clients to create engaging, brand focused designs and deliver projects on time.",
     ],
   },
 ];
 
 export const projects: Project[] = [
   {
-    title: "Agricultural Insights Dashboard",
+    title: "Car Dataset: Exploratory Data Analysis (EDA)",
     description:
-      "A data-driven analytics dashboard that helps farmers and stakeholders monitor crop conditions, yield trends, and seasonal patterns using predictive insights.",
-    technologies: ["Python", "Pandas", "Power BI", "SQL", "Machine Learning"],
-    github: "https://github.com/yubrajtamang",
+      "This project performs exploratory data analysis (EDA) on a car dataset. The goal is to understand the features, clean the data, identify patterns and insights, and prepare it for future machine learning or business intelligence tasks.",
+    technologies: ["Python", "Pandas", "Matplotlib", "Data Cleaning", "Exploratory Data Analysis"],
+    github: "https://github.com/YubrajTxx/car_dataset_exploratory_data_analysis.git",
     live: "#",
     featured: true,
   },
   {
-    title: "Sales & Performance Analytics",
+    title: "Economic Dataset: EDA & Cleaning",
     description:
-      "A business intelligence dashboard that visualizes key performance metrics, trend analysis, and performance anomalies for faster decision-making.",
-    technologies: ["SQL", "Power BI", "Excel", "Python", "DAX"],
-    github: "https://github.com/yubrajtamang",
+      "This project involves exploratory data analysis (EDA) and data cleaning on an economic dataset. The aim is to prepare the data for further analysis or machine learning modeling by handling missing values, removing inconsistencies, and uncovering insights through statistical summaries and visualizations.",
+    technologies: ["Excel", "Python", "Data Cleaning", "Exploratory Data Analysis","Pandas", "Matplotlib"],
+    github: "https://github.com/YubrajTxx/economic_Dataset_EDA-_Cleaning.git",
     featured: true,
   },
   {
-    title: "E-Commerce Sales Analytics",
+    title: "Learning Python With Projects",
     description:
-      "A reporting solution for product performance, customer behavior, and revenue tracking with actionable business insights.",
-    technologies: ["SQL", "Python", "Excel", "Dashboarding", "ETL"],
-    github: "https://github.com/yubrajtamang",
+      "This project contain basic python and intermediate python with mini projects. It is designed to help beginners learn Python programming through hands on projects, covering fundamental concepts and practical applications.",
+    technologies: ["Python", "Mini Projects", "Intermediate Python"],
+    github: "https://github.com/YubrajTxx/python_learn.git",
     live: "#",
   },
   {
@@ -97,7 +97,7 @@ export const projects: Project[] = [
     description:
       "This interactive hardcover portfolio presents my analytics journey, business storytelling, and data-driven problem-solving work.",
     technologies: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
-    github: "https://github.com/yubrajtamang",
+    github: "https://github.com/YubrajTxx/Book.git",
     live: "#",
   },
 ];
