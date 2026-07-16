@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Yubraj Tamang — Portfolio",
+  title: "Yubraj Tamang Portfolio",
   description:
-    "An interactive hardcover book portfolio showcasing the professional journey of Yubraj Tamang — Data Analyst focused on insights, dashboards, and business intelligence.",
+    "An interactive hardcover book portfolio showcasing the professional journey of Yubraj Tamang Data Analyst focused on insights, dashboards, and business intelligence.",
   keywords: [
     "Yubraj Tamang",
     "portfolio",

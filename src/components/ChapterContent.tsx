@@ -129,7 +129,7 @@ export function WelcomePage() {
       {/* Bottom Subtitle */}
       <div className="mb-8">
         <p className="font-playfair text-[10px] text-gold-dark italic tracking-widest mb-1">
-          Lalitpur, Nepal
+          Kathmandu, Nepal
         </p>
         <p className="font-inter text-[8px] text-muted tracking-wider uppercase">
           Edition 2026
@@ -185,7 +185,7 @@ export function LandingPage() {
           custom={4}
           className="font-inter text-sm text-muted leading-relaxed mb-8 max-w-md"
         >
-          Turning data into clear insights, interactive dashboards, and business-ready
+          Turning data into clear insights, interactive dashboards, and business ready
           reporting that supports smarter decisions. Based in Nepal, focused on
           impact through analysis.
         </motion.p>
@@ -200,7 +200,7 @@ export function LandingPage() {
             Resume
           </a>
           <a
-            href="https://github.com/yubrajtamang"
+            href="https://github.com/YubrajTxx"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-link"
@@ -208,11 +208,11 @@ export function LandingPage() {
             <span className="material-symbols-rounded text-sm">code</span>
             GitHub
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="btn-link">
+          <a href="https://www.linkedin.com/in/yubraj-tamang" target="_blank" rel="noopener noreferrer" className="btn-link">
             <span className="material-symbols-rounded text-sm">work</span>
             LinkedIn
           </a>
-          <a href="mailto:yubraj@example.com" className="btn-link">
+          <a href="mailto:yt60015@gmail.com" className="btn-link">
             <span className="material-symbols-rounded text-sm">mail</span>
             Email
           </a>
